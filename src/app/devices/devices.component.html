@@ -1,0 +1,35 @@
+
+<div class="device-input">
+    <form #f="ngForm" (ngSubmit)="onClaimDevice(f)">
+        <mat-form-field>
+            <input 
+                type="text" 
+                matInput 
+                placeholder="Device ID" 
+                [(ngModel)]="particleId"
+                name="particleId"
+                #nameInput="ngModel">
+        </mat-form-field>
+        <button [disabled]="!f.valid" type="submit" mat-flat-button color="primary">Add Device</button>
+    </form>
+</div>
+
+<div *ngIf="devicesList$ | async as devices;">
+    <div class="device-list" *ngIf="devices.length > 0; else noDevices">
+        <mat-list>
+            <div *ngFor="let device of devices">
+                <mat-list-item>
+                    <div class="list-items">
+                        <span class="device-title"><strong>{{device.name}} <i class="material-icons refresh-icon" (click)="onDeviceRefresh(device)" [ngClass]="toggleAnimation ? 'animate' : 'none'">refresh</i></strong></span>
+                        <mat-chip-list>
+                            <mat-chip [ngStyle]="{'background': device.online ? '#4caf50' : '#f44336', 'color': '#fff'}">{{device.online ? 'Online' : 'Offline'}}</mat-chip>
+                            <mat-chip style="cursor: pointer" color="secondary" selected (click)="onUnClaimDevice(device)">Unclaim</mat-chip>
+                        </mat-chip-list>
+                    </div>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+            </div>
+        </mat-list>
+    </div>
+</div>
+

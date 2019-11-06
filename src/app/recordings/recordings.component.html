@@ -1,0 +1,28 @@
+<div class="recording-list-container" *ngIf="recordings$ | async as recordings;">
+    <div *ngIf="recordings.length > 0; else noContent">
+        <div class="recordings-list" *ngFor="let recording of recordings; let i = index">
+            <mat-card *ngIf="!recording.activeRecording && recording.transcription" [ngStyle]="getStyles()">
+                    <div class="card-header">
+                        <strong>{{recording.deviceName}}</strong>
+                        <small>{{recording.timestamp.toDate() | date: 'medium'}}</small>
+                    </div>
+                    <br>
+                    <mat-card-content>
+                        <i class="material-icons">format_quote</i>
+                        <code><em>{{recording.transcription}}</em></code>
+                    </mat-card-content>
+                    <br>
+                    <audio controls src="{{recording.audioUrl}}"></audio>
+            </mat-card>
+            <div style="margin-top: 30px;" *ngIf="recording.activeRecording">
+                <p>Squawking in progress... &nbsp; <mat-spinner style="display: inline-block;" diameter="20"></mat-spinner></p>
+            </div>
+            <div style="margin-top: 30px;" *ngIf="recording.activeTranscription">
+                <p>Speech-to-Text in progress... &nbsp; <mat-spinner style="display: inline-block;" diameter="20"></mat-spinner></p>
+            </div>
+        </div>
+    </div>
+    <ng-template #noContent>
+        <h2 class="no-recordings">No Recordings...</h2>
+    </ng-template>
+</div>

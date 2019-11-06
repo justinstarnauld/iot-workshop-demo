@@ -1,0 +1,44 @@
+mat-toolbar {
+    top: 0;
+    position: sticky;
+    z-index:999;
+    display: flex;
+    justify-content: space-between;
+
+    .title {
+        i {
+            font-size: 34px;
+            vertical-align: bottom;
+        }
+    }
+
+}
+
+a.dropdown-item {
+    text-decoration: none;
+    color: #333;
+}
+
+.nav-links {
+    display: none;
+}
+
+@media (min-width: 600px) {
+    .nav-links {
+        display: flex;
+        a {
+            margin-left: 20px;
+            color: #fff;
+            text-decoration: none;
+            &:hover {
+                color: #ddd;
+                cursor: pointer;
+            }
+        }
+    }
+    .nav-dropdown {
+        display: none;
+    }
+}
+
+

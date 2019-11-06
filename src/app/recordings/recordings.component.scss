@@ -1,0 +1,46 @@
+
+.recording-list-container {
+    margin: 20px 0;
+}
+
+.no-recordings {
+    display: flex;
+    justify-content: center;
+    margin-top: 80px;
+    font-weight: 300;
+}
+
+.recordings-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+mat-card {
+    .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        strong {
+            font-size: 1.1em;
+        }
+    }
+    // border-left: 4px solid blue;
+    margin-top: 20px;
+    width: 90%;
+    @media (min-width: 600px) {
+        width: 80%;
+    }
+    @media (min-width: 992px) {
+        width: 60%;
+    }
+}
+
+audio {
+    width: 100%;
+    background: transparent;
+    &:focus {
+        outline: none;
+    }
+}
